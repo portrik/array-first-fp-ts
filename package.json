@@ -17,16 +17,23 @@
     "node": ">=0.10.0"
   },
   "scripts": {
-    "test": "mocha"
-  },
-  "dependencies": {
-    "array-slice": "^0.2.3",
-    "is-number": "^2.1.0"
+    "test": "vitest"
   },
   "devDependencies": {
+    "@eslint/js": "^9.4.0",
+    "@stylistic/eslint-plugin": "^2.1.0",
+    "@types/node": "^20.14.2",
+    "eslint": "^9.4.0",
+    "eslint-plugin-functional": "^6.5.1",
+    "eslint-plugin-sonarjs": "^1.0.3",
+    "eslint-plugin-unicorn": "^53.0.0",
+    "fp-ts": "^2.16.6",
     "gulp-format-md": "^0.1.5",
-    "mocha": "*",
-    "should": "*"
+    "prettier": "^3.3.1",
+    "prettier-eslint": "^16.3.0",
+    "typescript": "^5.4.5",
+    "typescript-eslint": "^7.12.0",
+    "vitest": "^1.6.0"
   },
   "keywords": [
     "array",
