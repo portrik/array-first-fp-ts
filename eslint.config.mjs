@@ -1,11 +1,11 @@
 // @ts-expect-error ESlint definitions are not really needed
 import eslint from '@eslint/js';
+import functional from 'eslint-plugin-functional';
+import sonarjs from 'eslint-plugin-sonarjs';
+import stylistic from '@stylistic/eslint-plugin';
 import tseslint from 'typescript-eslint';
 // @ts-expect-error ESLint plugin definitions are not needed
 import unicorn from 'eslint-plugin-unicorn';
-import sonarjs from 'eslint-plugin-sonarjs';
-import functional from 'eslint-plugin-functional';
-import stylistic from '@stylistic/eslint-plugin';
 
 export default tseslint.config(
 	eslint.configs.recommended,
@@ -23,7 +23,7 @@ export default tseslint.config(
 			},
 		},
 		plugins: {
-			functional: functional,
+			functional,
 			'@stylistic': stylistic,
 		},
 		rules: {
@@ -41,7 +41,13 @@ export default tseslint.config(
 			'@stylistic/function-call-spacing': ['error', 'never'],
 			'@stylistic/key-spacing': ['error', { 'beforeColon': false }],
 			'@stylistic/no-mixed-spaces-and-tabs': 'error',
-			'@stylistic/object-curly-spacing': ['error', 'always']
+			'@stylistic/object-curly-spacing': ['error', 'always'],
+			'sort-imports': ['error', {
+				ignoreCase: false,
+				ignoreDeclarationSort: false,
+				'memberSyntaxSortOrder': ['none', 'all', 'multiple', 'single'],
+				'allowSeparatedGroups': true
+			}]
 		},
 	},
 	{

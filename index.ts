@@ -5,20 +5,20 @@
  * Licensed under the MIT license.
  */
 
-function arrayFirst<Content>(arr: ReadonlyArray<Content>, num?: number): Content | Content[] | null {
-	if (!Array.isArray(arr)) {
-		throw new Error('array-first expects an array as the first argument.');
+import { Option, none, some } from 'fp-ts/Option';
+
+function arrayFirst<Content>(array: ReadonlyArray<Content>): Option<Content>;
+function arrayFirst<Content>(array: ReadonlyArray<Content>, size: 1): Option<Content>;
+function arrayFirst<Content>(array: ReadonlyArray<Content>, size: number): Option<Content[]>;
+
+function arrayFirst<Content>(array: ReadonlyArray<Content>, size: number = 1): Option<Content | Content[]> {
+	const first = array.slice(0, size);
+	if (first.length === 0 || size < 1) {
+		return none;
 	}
 
-	if (arr.length === 0) {
-		return null;
-	}
-
-	const first = arr.slice(0, num ?? 1);
-	if ((num ?? 1) === 1) {
-		return first[0];
-	}
-	return first;
+	// Non-null assertion is guaranteed to be non-issue by the argument above.
+	return some(size === 1 ? first[0]! : first);
 };
 
 export default arrayFirst;

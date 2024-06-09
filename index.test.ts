@@ -5,20 +5,26 @@
  * Licensed under the MIT License
  */
 
+import { none, some } from 'fp-ts/lib/Option';
+
 import first from './index';
 
 describe('first', function() {
-	it('should throw an error if the value passed is not an array:', () => {
-		expect(first).toThrowError('array-first expects an array as the first argument.');
+	it('should return none for empty array:', () => {
+		expect(first([])).toEqual(none);
+	});
+
+	it('should return none for size under 1', () => {
+		expect(first([1, 2, 3, 4], 0)).toEqual(none);
 	});
 
 	it('should return the first element in the array:', () => {
-		expect(first(['a', 'b', 'c', 'd', 'e', 'f'])).toBe('a');
-		expect(first(['a', 'b', 'c', 'd', 'e', 'f'], 1)).toBe('a');
+		expect(first(['a', 'b', 'c', 'd', 'e', 'f'])).toEqual(some('a'));
+		expect(first(['a', 'b', 'c', 'd', 'e', 'f'], 1)).toEqual(some('a'));
 	});
 
 	it('should the first n elements of the array:', () => {
-		expect(first(['a', 'b', 'c', 'd', 'e', 'f'], 3)).toEqual(['a', 'b', 'c']);
+		expect(first(['a', 'b', 'c', 'd', 'e', 'f'], 3)).toEqual(some(['a', 'b', 'c']));
 	});
 });
 
